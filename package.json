@@ -1,0 +1,34 @@
+{
+  "name": "codepad",
+  "version": "1.0.0",
+  "description": "Quick Code Editor for the browser",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development",
+    "watch": "webpack --mode development --watch"
+  },
+  "author": "KTichmann",
+  "license": "ISC",
+  "dependencies": {
+    "@emmetio/codemirror-plugin": "^0.5.4",
+    "codemirror": "^5.41.0",
+    "css-loader": "^1.0.1",
+    "emmet": "^1.6.3",
+    "react": "^16.6.3",
+    "react-cmirror": "^1.4.1",
+    "react-dom": "^16.6.3",
+    "style-loader": "^0.23.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel": "^6.23.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
