@@ -45,11 +45,7 @@ class Input extends React.Component{
 
 export default Input;
 
-
-
-
 /*
-
 TODO: Allow changing width and height of input box
 Allow changing font-size
 Styling
