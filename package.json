@@ -15,6 +15,7 @@
     "codemirror": "^5.41.0",
     "css-loader": "^1.0.1",
     "emmet": "^1.6.3",
+    "js-beautify": "^1.8.8",
     "react": "^16.6.3",
     "react-cmirror": "^1.4.1",
     "react-dom": "^16.6.3",
