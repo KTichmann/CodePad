@@ -29,7 +29,17 @@ class Input extends React.Component {
     this.setState({ text: editor.getValue() });
   }
   prettifyInput() {
-    let beautifulText = beautify.html(this.state.text);
+    switch(this.props.mode){
+      case "htmlmixed":
+        let beautifulText = beautify.html(this.state.text);
+        break;
+      case "css":
+        let beautifulText = beautify.css(this.state.text);
+        break;
+      default:
+        let beautifulText = beautify.js(this.state.text);
+        break;
+    }
     this.setState({text: beautifulText});
   }
   render() {
