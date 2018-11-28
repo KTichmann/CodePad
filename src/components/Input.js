@@ -17,6 +17,7 @@ class Input extends React.Component {
   }
   componentWillMount() {
     let text = localStorage.getItem("codePadText");
+    <div />;
     if (text) {
       this.setState({ text: text });
     }
@@ -28,16 +29,15 @@ class Input extends React.Component {
     this.setState({ text: editor.getValue() });
   }
   prettifyInput() {
-    let beautifulText;
     switch(this.props.mode){
       case "htmlmixed":
-        beautifulText = beautify.html(this.state.text, {preserve_newlines: false});
+        let beautifulText = beautify.html(this.state.text);
         break;
       case "css":
-        beautifulText = beautify.css(this.state.text);
+        let beautifulText = beautify.css(this.state.text);
         break;
       default:
-        beautifulText = beautify.js(this.state.text);
+        let beautifulText = beautify.js(this.state.text);
         break;
     }
     this.setState({text: beautifulText});
