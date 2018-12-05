@@ -16,6 +16,7 @@ class CodePad extends React.Component {
     this.changeMode = this.changeMode.bind(this);
     this.changeTheme = this.changeTheme.bind(this);
     this.changeFontSize = this.changeFontSize.bind(this);
+    this.changeContainerSize = this.changeContainerSize.bind(this);
   }
   changeMode(mode) {
     this.setState({ mode: mode });
@@ -27,12 +28,17 @@ class CodePad extends React.Component {
   }
   changeFontSize(fontSize){
     this.setState({ fontSize: fontSize });
-    localStorage.setItem("codePadFontSize", fontSize)
+    localStorage.setItem("codePadFontSize", fontSize);
+  }
+  changeContainerSize(width, height){
+    this.setState({ width: width, height: height });
+    localStorage.setItem("codePadContainerWidth", width);
+    localStorage.setItem("codePadContainerHeight", height);
   }
   render() {
     return (
       <div>
-        <Menu changeTheme={this.changeTheme} changeMode={this.changeMode} changeFontSize={this.changeFontSize}/>
+        <Menu changeTheme={this.changeTheme} changeMode={this.changeMode} changeFontSize={this.changeFontSize} changeContainerSize={this.changeContainerSize}/>
         <Input theme={this.state.theme} mode={this.state.mode} fontSize={this.state.fontSize}/>
       </div>
     );

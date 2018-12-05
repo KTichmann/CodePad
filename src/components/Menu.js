@@ -19,7 +19,6 @@ class Menu extends React.Component {
     if(fontSize){
       this.props.changeFontSize(fontSize);
     }
-
   }
   render() {
     return (
@@ -62,6 +61,12 @@ class Menu extends React.Component {
           <option value="20px">20px</option>
           <option value="22px">22px</option>
           <option value="24px">24px</option>
+        </select>
+        <select onChange={event => {this.props.changeContainerSize(event.target.getAttribute("data-width"), event.target.getAttribute("data-height"))}}>
+          <option value="Small" data-width="100px" data-height="100px">Small</option>
+          <option value="Medium" data-width="200px" data-height="200px">Medium</option>
+          <option value="Large" data-width="100px" data-height="100px">Large</option>
+          <option value="X-Large" data-width="100px" data-height="100px">X-Large</option>
         </select>
       </div>
     );
