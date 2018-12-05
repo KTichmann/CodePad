@@ -15,6 +15,11 @@ class Menu extends React.Component {
     if (mode) {
       this.props.changeMode(mode);
     }
+    let fontSize = localStorage.getItem("codePadFontSize");
+    if(fontSize){
+      this.props.changeFontSize(fontSize);
+    }
+
   }
   render() {
     return (
@@ -47,6 +52,16 @@ class Menu extends React.Component {
           <option value="sass">SASS</option>
           <option value="coffeescript">Coffeescript</option>
           <option value="jsx">JSX/React</option>
+        </select>
+        <select onChange = {event => {this.props.changeFontSize(event.target.value)}}>
+          <option value="10px">10px</option>
+          <option value="12px">12px</option>
+          <option value="14px">14px</option>
+          <option value="16px">16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="22px">22px</option>
+          <option value="24px">24px</option>
         </select>
       </div>
     );

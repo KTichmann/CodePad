@@ -17,7 +17,6 @@ class Input extends React.Component {
   }
   componentWillMount() {
     let text = localStorage.getItem("codePadText");
-    <div />;
     if (text) {
       this.setState({ text: text });
     }
@@ -29,15 +28,16 @@ class Input extends React.Component {
     this.setState({ text: editor.getValue() });
   }
   prettifyInput() {
+    let beautifulText;
     switch(this.props.mode){
       case "htmlmixed":
-        let beautifulText = beautify.html(this.state.text);
+        beautifulText = beautify.html(this.state.text);
         break;
       case "css":
-        let beautifulText = beautify.css(this.state.text);
+        beautifulText = beautify.css(this.state.text);
         break;
       default:
-        let beautifulText = beautify.js(this.state.text);
+        beautifulText = beautify.js(this.state.text);
         break;
     }
     this.setState({text: beautifulText});
@@ -52,10 +52,13 @@ class Input extends React.Component {
       extraKeys: {
         Tab: "emmetExpandAbbreviation",
         Enter: "emmetInsertLineBreak"
-      }
+      },
     };
+    let style = {
+      fontSize: this.props.fontSize
+    }
     return (
-      <div>
+      <div style={style}>
         <ReactCodeMirror
           options={options}
           onChange={(editor, data, value) => {
