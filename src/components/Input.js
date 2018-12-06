@@ -55,7 +55,8 @@ class Input extends React.Component {
       },
     };
     let style = {
-      fontSize: this.props.fontSize
+      fontSize: this.props.fontSize,
+      height: this.props.containerSize.height
     }
     return (
       <div style={style}>
@@ -65,8 +66,8 @@ class Input extends React.Component {
             this.handleChange(editor);
           }}
           value={this.state.text}
-          width="300px"
-          height="300px"
+          width={this.props.containerSize.width}
+          height="100%"
         />
         <button onClick={this.prettifyInput}>Prettify</button>
       </div>
