@@ -1,0 +1,19 @@
+#menu{
+    right: 10px;
+    top: 10px;
+    position: fixed;
+    z-index: 100;
+    #selectors{
+        display: none;
+        visibility: hidden;
+        &.active{
+            display: flex;
+            flex-direction: column;
+            visibility: visible;
+        }
+    }
+
+    #settings-button{
+        text-align: right;
+    }
+}
