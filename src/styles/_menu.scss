@@ -5,6 +5,8 @@
     z-index: 100;
     #selectors{
         display: none;
+        position: absolute;
+        right: 0px;
         visibility: hidden;
         &.active{
             display: flex;
@@ -15,5 +17,7 @@
 
     #settings-button{
         text-align: right;
+        width: 25px;
+        color: white;
     }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../addons/themes.js";
 import "../addons/modes.js";
 
@@ -29,8 +28,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div id="menu">
-        <ion-icon name="heart"></ion-icon>
-        <FontAwesomeIcon icon="faStroopwafel" onClick={() => {
+        <img src="../src/images/settings.svg" onClick={() => {
           let selectors = document.getElementById("selectors")
           if(selectors.classList.contains("active")){
             selectors.classList.remove("active");
