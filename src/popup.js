@@ -15,37 +15,23 @@ class CodePad extends React.Component {
       theme: "darcula",
       mode: "htmlmixed",
       fontSize: "10px",
-      width: "100px",
-      height: "200px"
+      containerSize: {
+        width: "100px",
+        height: "200px"
+      }
     };
-    this.changeMode = this.changeMode.bind(this);
-    this.changeTheme = this.changeTheme.bind(this);
-    this.changeFontSize = this.changeFontSize.bind(this);
-    this.changeContainerSize = this.changeContainerSize.bind(this);
   }
-  changeMode(mode) {
-    this.setState({ mode: mode });
-    localStorage.setItem("codePadMode", mode);
-  }
-  changeTheme(theme) {
-    this.setState({ theme: theme });
-    localStorage.setItem("codePadTheme", theme);
-  }
-  changeFontSize(fontSize){
-    this.setState({ fontSize: fontSize });
-    localStorage.setItem("codePadFontSize", fontSize);
-  }
-  changeContainerSize(width, height){
-    console.log(width, height)
-    this.setState({ width: width, height: height });
-    localStorage.setItem("codePadContainerWidth", width);
-    localStorage.setItem("codePadContainerHeight", height);
+  changeSetting(setting, value){
+    this.setState({[setting]: value});
+    let storageName = `codePad${setting}`;
+    let storageValue = JSON.stringify(value);
+    localStorage.setItem(storageName, storageValue);
   }
   render() {
     return (
       <div>
-        <Menu changeTheme={this.changeTheme} changeMode={this.changeMode} changeFontSize={this.changeFontSize} changeContainerSize={this.changeContainerSize}/>
-        <Input theme={this.state.theme} mode={this.state.mode} fontSize={this.state.fontSize} containerSize={{width: this.state.width, height: this.state.height}}/>
+        <Menu changeTheme={(value) => {this.changeSetting('theme', value)}} changeMode={(value) => {this.changeSetting('mode', value)}} changeFontSize={(value) => {this.changeSetting('fontSize', value)}} changeContainerSize={(value) => {this.changeSetting('containerSize', JSON.parse(value))}}/>
+        <Input theme={this.state.theme} mode={this.state.mode} fontSize={this.state.fontSize} containerSize={this.state.containerSize}/>
       </div>
     );
   }

@@ -58,6 +58,7 @@ class Input extends React.Component {
       fontSize: this.props.fontSize,
       height: this.props.containerSize.height
     }
+    console.log(this.props.containerSize)
     return (
       <div style={style}>
         <ReactCodeMirror
@@ -76,9 +77,3 @@ class Input extends React.Component {
 }
 
 export default Input;
-
-/*
-TODO: Allow changing width and height of input box
-Allow changing font-size
-Styling
-*/

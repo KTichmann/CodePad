@@ -12,9 +12,33 @@
             display: flex;
             flex-direction: column;
             visibility: visible;
+            li{
+                &.active{
+                    visibility: visible;
+                }
+                background-color: green;
+                list-style-type: none;
+            }
+        }
+        .selector{
+            ul{
+                position: absolute;
+                visibility: hidden;
+                transform: scaleY(0);
+                transform-origin: top;
+                height: 0px;
+                transition: all .2s;
+            }
+            &.active{
+                ul{
+                    visibility: visible;
+                    height: auto;
+                    transform-origin: top;
+                    transform: scaleY(1);
+                }
+            }
         }
     }
-
     #settings-button{
         text-align: right;
         width: 25px;

@@ -7,80 +7,99 @@ class Menu extends React.Component {
     super(props);
   }
   componentWillMount() {
-    let theme = localStorage.getItem("codePadTheme");
+    let theme = localStorage.getItem("codePadtheme");
     if (theme) {
       this.props.changeTheme(theme);
     }
-    let mode = localStorage.getItem("codePadMode");
+    let mode = localStorage.getItem("codePadmode");
     if (mode) {
       this.props.changeMode(mode);
     }
-    let fontSize = localStorage.getItem("codePadFontSize");
+    let fontSize = localStorage.getItem("codePadfontSize");
     if(fontSize){
       this.props.changeFontSize(fontSize);
     }
-    let containerWidth = localStorage.getItem("codePadContainerWidth");
-    let containerHeight = localStorage.getItem("codePadContainerHeight");
-    if(containerWidth && containerHeight){
-      this.props.changeContainerSize(containerWidth, containerHeight);
-    }
+    let containerSize = localStorage.getItem("codePadcontainerSize");
+      if(containerSize){
+        this.props.changeContainerSize(containerSize);
+      }
   }
+  componentDidMount(){
+    //Settings Dropdowns:
+    this.changeSetting('.themeChoice', this.props.changeTheme);
+    this.changeSetting('.modeChoice', this.props.changeMode);
+    this.changeSetting('.fontSizeChoice', this.props.changeFontSize);
+    this.changeSetting('.sizeChoice', this.props.changeContainerSize);
+  }
+  changeSetting(settingClass, changeFunction){
+    document.querySelectorAll(settingClass).forEach(node => {
+      node.addEventListener('click', (event) => {
+        changeFunction(event.target.dataset.value)
+      })
+    })
+  }
+  toggleActive(id){
+    let selector = document.getElementById(id);
+    if(selector.classList.contains("active")){
+      selector.classList.remove("active");
+    } else{
+      selector.classList.add("active");
+    }
+  } 
+
   render() {
     return (
       <div id="menu">
-        <img src="../src/images/settings.svg" onClick={() => {
-          let selectors = document.getElementById("selectors")
-          if(selectors.classList.contains("active")){
-            selectors.classList.remove("active");
-          } else{
-            selectors.classList.add("active")
-          }
-          }} id="settings-button" />
+        <img src="../src/images/settings.svg" onClick={() => this.toggleActive("selectors")} id="settings-button" />
         <div id="selectors">
-          <select
-            onChange={event => {
-              this.props.changeTheme(event.target.value);
-            }}
-          >
-            <option value="eclipse">Day</option>
-            <option value="3024-night">Night</option>
-            <option value="ambiance">Charcoal Dark</option>
-            <option value="elegant">Elegant</option>
-            <option value="blackboard">Blackboard</option>
-            <option value="cobalt">Stormy Skies</option>
-            <option value="isotope">Neon</option>
-            <option value="idea">Basic Light</option>
-            <option value="the-matrix">The Matrix</option>
-          </select>
-          <select
-            onChange={event => {
-              this.props.changeMode(event.target.value);
-            }}
-          >
-            <option value="htmlmixed">HTML</option>
-            <option value="javascript">Javascript</option>
-            <option value="css">CSS</option>
-            <option value="vue">Vue</option>
-            <option value="sass">SASS</option>
-            <option value="coffeescript">Coffeescript</option>
-            <option value="jsx">JSX/React</option>
-          </select>
-          <select onChange = {event => {this.props.changeFontSize(event.target.value)}}>
-            <option value="10px">10px</option>
-            <option value="12px">12px</option>
-            <option value="14px">14px</option>
-            <option value="16px">16px</option>
-            <option value="18px">18px</option>
-            <option value="20px">20px</option>
-            <option value="22px">22px</option>
-            <option value="24px">24px</option>
-          </select>
-          <select onChange={event => {this.props.changeContainerSize(event.target.selectedOptions[0].getAttribute("data-width"), event.target.selectedOptions[0].getAttribute("data-height"))}}>
-            <option value="Small" data-width="100px" data-height="200px">Small</option>
-            <option value="Medium" data-width="400px" data-height="400px">Medium</option>
-            <option value="Large" data-width="600px" data-height="500px">Large</option>
-            <option value="X-Large" data-width="700px" data-height="500px">X-Large</option>
-          </select>
+          <div onClick={() => this.toggleActive("theme-selector")} id="theme-selector" className="selector">
+            <span>Theme</span>
+            <ul>
+              <li className="themeChoice" data-value="eclipse">Day</li>
+              <li className="themeChoice" data-value="3024-night">Night</li>
+              <li className="themeChoice" data-value="ambiance">Charcoal Dark</li>
+              <li className="themeChoice" data-value="elegant">Elegant</li>
+              <li className="themeChoice" data-value="blackboard">Blackboard</li>
+              <li className="themeChoice" data-value="cobalt">Stormy Skies</li>
+              <li className="themeChoice" data-value="isotope">Neon</li>
+              <li className="themeChoice" data-value="idea">Basic Light</li>
+              <li className="themeChoice" data-value="the-matrix">The Matrix</li>
+            </ul>
+          </div>
+          <div onClick={() => this.toggleActive("mode-selector")} id="mode-selector" className="selector">
+            <span>Mode</span>
+            <ul>
+              <li className="modeChoice" data-value="htmlmixed">HTML</li>
+              <li className="modeChoice" data-value="javascript">Javascript</li>
+              <li className="modeChoice" data-value="css">CSS</li>
+              <li className="modeChoice" data-value="vue">Vue</li>
+              <li className="modeChoice" data-value="sass">SASS</li>
+              <li className="modeChoice" data-value="coffeescript">Coffeescript</li>
+              <li className="modeChoice" data-value="jsx">JSX/React</li>
+            </ul>
+          </div>
+          <div onClick = {() => this.toggleActive("fontSize-selector")} id="fontSize-selector" className="selector">
+            <span>Font Size</span>
+            <ul>
+              <li className="fontSizeChoice" data-value="10px">10px</li>
+              <li className="fontSizeChoice" data-value="12px">12px</li>
+              <li className="fontSizeChoice" data-value="14px">14px</li>
+              <li className="fontSizeChoice" data-value="16px">16px</li>
+              <li className="fontSizeChoice" data-value="18px">18px</li>
+              <li className="fontSizeChoice" data-value="20px">20px</li>
+              <li className="fontSizeChoice" data-value="22px">22px</li>
+              <li className="fontSizeChoice" data-value="24px">24px</li>
+            </ul>
+          </div>
+          <div onClick={() => this.toggleActive("size-selector")} id="size-selector" className="selector">
+            <span>Container</span>
+            <ul>
+              <li className="sizeChoice" data-value={'{"width": "100px", "height": "200px"}'}>Small</li>
+              <li className="sizeChoice" data-value={'{"width": "400px", "height": "400px"}'}>Medium</li>
+              <li className="sizeChoice" data-value={'{"width": "600px", "height": "500px"}'}>Large</li>
+              <li className="sizeChoice" data-value={'{"width": "700px", "height": "500px"}'}>X-Large</li>
+            </ul>
+          </div>
         </div>
       </div>
     );
