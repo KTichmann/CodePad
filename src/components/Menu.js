@@ -5,6 +5,7 @@ import "../addons/modes.js";
 class Menu extends React.Component {
   constructor(props) {
     super(props);
+    this.closeTab = this.closeTab.bind(this);
   }
   componentWillMount() {
     let theme = localStorage.getItem("codePadtheme");
@@ -30,6 +31,7 @@ class Menu extends React.Component {
     this.changeSetting('.modeChoice', this.props.changeMode);
     this.changeSetting('.fontSizeChoice', this.props.changeFontSize);
     this.changeSetting('.sizeChoice', this.props.changeContainerSize);
+    this.detectOutsideClick("menu", this.closeTab)
   }
   changeSetting(settingClass, changeFunction){
     document.querySelectorAll(settingClass).forEach(node => {
@@ -46,11 +48,24 @@ class Menu extends React.Component {
       selector.classList.add("active");
     }
   } 
-
+  detectOutsideClick(id, fn){
+    document.addEventListener("click", (event) => {
+      console.log(event.currentTarget)
+      if(event.target.id != id){
+        fn(id);
+      }
+    })
+  }
+  closeTab(id){
+    let element = document.getElementById(id);
+    if(element.classList.contains("active")){
+      element.classList.remove("active");
+    }
+  }
   render() {
     return (
       <div id="menu">
-        <img src="../src/images/settings.svg" onClick={() => this.toggleActive("selectors")} id="settings-button" />
+        <img src="../src/images/settings.svg" onClick={() => this.toggleActive("menu")} id="settings-button" />
         <div id="selectors">
           <div onClick={() => this.toggleActive("theme-selector")} id="theme-selector" className="selector">
             <span>Theme</span>

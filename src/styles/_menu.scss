@@ -8,18 +8,6 @@
         position: absolute;
         right: 0px;
         visibility: hidden;
-        &.active{
-            display: flex;
-            flex-direction: column;
-            visibility: visible;
-            li{
-                &.active{
-                    visibility: visible;
-                }
-                background-color: green;
-                list-style-type: none;
-            }
-        }
         .selector{
             ul{
                 position: absolute;
@@ -36,6 +24,20 @@
                     transform-origin: top;
                     transform: scaleY(1);
                 }
+            }
+        }
+    }
+    &.active{
+        #selectors{
+            display: flex;
+            flex-direction: column;
+            visibility: visible;
+            li{
+                &.active{
+                    visibility: visible;
+                }
+                background-color: green;
+                list-style-type: none;
             }
         }
     }
